@@ -1,5 +1,11 @@
 package _01_introduction_to_encapsulation;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
 /*
  * Encapsulation is a way of protecting the data in a class from being
  * unintentionally altered from another class.
@@ -26,8 +32,6 @@ public class EncapsulateTheData {
 	private float degreesTurned; // must be locked between 0.0 and 360.0 inclusive.
 	private String nomenclature = " "; // must not be set to a blank string. Blank Strings get set to a space
 	private Object memberObj; // must not be a String. If it is a String, set it equal to a new Object();
-
-
 
 	public int getItemsReceived() {
 		return itemsReceived;
@@ -74,4 +78,40 @@ public class EncapsulateTheData {
 		}
 		memberObj = zz;
 	}
+
+	@Test
+	public void tester() {
+		EncapsulateTheData xyz = new EncapsulateTheData();
+		// items received test
+		assertEquals(0, xyz.getItemsReceived());
+		xyz.setItemsReceived(34);
+		assertEquals(34, xyz.getItemsReceived());
+		xyz.setItemsReceived(-3);
+		assertEquals(0, xyz.getItemsReceived());
+		// degrees turned test
+		assertEquals(0.0f, xyz.getDegreesTurned(), 0);
+		xyz.setDegreesTurned(34.0f);
+		assertEquals(34.0f, xyz.getDegreesTurned(), 0);
+		xyz.setDegreesTurned(-3.0f);
+		assertEquals(0.0f, xyz.getDegreesTurned(), 0);
+		xyz.setDegreesTurned(392.0f);
+		assertEquals(360.0f, xyz.getDegreesTurned(), 0);
+		// nomenclature test
+		assertEquals(" ", xyz.getNomenclature());
+		xyz.setNomenclature("coding");
+		assertEquals("coding", xyz.getNomenclature());
+		xyz.setNomenclature("");
+		assertEquals(" ", xyz.getNomenclature());
+		xyz.setNomenclature("one more test");
+		assertEquals("one more test", xyz.getNomenclature());
+		// member object test
+		xyz.setMemberObj(15);
+		assertEquals(15, xyz.getMemberObj());
+		xyz.setMemberObj(15.1);
+		assertEquals(15.1, xyz.getMemberObj());
+		xyz.setMemberObj("string");
+		assertTrue(xyz.getMemberObj() instanceof Object);
+		// assertType(new Object(), xyz.getMemberObj());
+	}
+
 }
