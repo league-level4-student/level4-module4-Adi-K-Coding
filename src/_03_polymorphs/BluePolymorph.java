@@ -5,8 +5,8 @@ import java.awt.Graphics;
 
 public class BluePolymorph extends Polymorph {
 
-	BluePolymorph(int x, int y) {
-		super(x, y);
+	BluePolymorph(int x, int y, int width, int height) {
+		super(x, y, width, height);
 	}
 
 	@Override
