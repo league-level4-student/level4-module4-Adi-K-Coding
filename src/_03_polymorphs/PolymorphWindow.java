@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class PolymorphWindow extends JPanel implements ActionListener, MouseMotionListener {
+public class PolymorphWindow extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
 	public static final int WIDTH = 900;
 	public static final int HEIGHT = 600;
 
@@ -25,6 +25,8 @@ public class PolymorphWindow extends JPanel implements ActionListener, MouseMoti
 	ArrayList<Polymorph> polymorphs = new ArrayList<Polymorph>();
 	static int mouseX;
 	static int mouseY;
+	static int clickX;
+	static int clickY;
 
 	public static void main(String[] args) {
 		new PolymorphWindow().buildWindow();
@@ -38,6 +40,7 @@ public class PolymorphWindow extends JPanel implements ActionListener, MouseMoti
 		window.pack();
 		window.setVisible(true);
 		window.addMouseMotionListener(this);
+		window.addMouseListener(this);
 
 		timer = new Timer(1000 / 30, this);
 		timer.start();
@@ -46,8 +49,8 @@ public class PolymorphWindow extends JPanel implements ActionListener, MouseMoti
 		// polymorphs.add(new MovingMorph(0, 0, 50, 50));
 		polymorphs.add(new MathMorph(300, 300, 50, 50));
 		polymorphs.add(new MouseMorph(200, 200, 50, 50));
-//		polymorphs.add(new PictureMorph(200, 200, 50, 50));
-//		polymorphs.add(new MessageMorph(200, 200, 50, 50));
+		polymorphs.add(new ImageMorph(300, 100, 450, 127));
+		polymorphs.add(new ClickedMorph(500, 400, 100, 100));
 
 	}
 
@@ -80,5 +83,34 @@ public class PolymorphWindow extends JPanel implements ActionListener, MouseMoti
 	public void mouseMoved(MouseEvent arg0) {
 		mouseX = arg0.getX();
 		mouseY = arg0.getY();
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+	
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		clickX = arg0.getX();
+		clickY = arg0.getY();
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		
 	}
 }
