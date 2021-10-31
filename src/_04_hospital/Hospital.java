@@ -17,17 +17,26 @@ public class Hospital {
 	}
 
 	public void addPatient(Patient patient) {
-		
+		patients.add(patient);
 
 	}
 
-	public List<Doctor> getPatients() {
-		return null;
-		
+	public List<Patient> getPatients() {
+		return patients;
+
 	}
 
 	public void assignPatientsToDoctors() {
+		int doctorNumber = 0;
+		for (int k = 0; k < patients.size(); k++) {
+			try {
+				doctors.get(doctorNumber).assignPatient(patients.get(k));
+			} catch (DoctorFullException e) {
+				doctorNumber += 1;
+				k -= 1;
+			}
 
+		}
 	}
 
 }
